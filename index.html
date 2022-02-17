@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>text editor</title>
+    <style>
+        .main {
+            margin-top: 100px;
+        }
+
+        .my-text-wrapper {
+            display: inline-block;
+            width: 200px;
+            margin-left: 100px;
+            vertical-align: top;
+            border: 1px solid #999;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .editor-panel {
+            display: inline-block;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+<main class="main">
+    <div class="my-text-wrapper" contenteditable="true">
+        双击编辑文字,双击编辑文字,双击编辑文字,双击编辑文字,双击编辑文字,双击编辑文字,双击编辑文字,双击编辑文字
+    </div>
+    <div class="editor-panel">
+        <div class="tip">
+            编辑文字属性
+        </div>
+        <div>
+            <label for="font-size">文字大小</label>
+            <input id="font-size" type="text" type="number" placeholder="输入后按回车" onchange="onFontSizeChange(event)">
+        </div>
+        <div>
+            <label for="line-height">行高</label>
+            <input id="line-height" type="text" placeholder="输入后按回车" onchange="onLineHeightChange(event)">
+        </div>
+        <div>
+            <label for="font-family">字体</label>
+            <select name="" id="font-family" onchange="onFontFamilyChange(event)">
+                <option value="微软雅黑">微软雅黑</option>
+                <!-- TODO 有个小Bug,如果用Microsoft YaHei，不生效，可能是 <font face="字体名"> 不能有空格-->
+                <option value="fangsong">宋体</option>
+                <option value="黑体">黑体</option>
+            </select>
+        </div>
+        <div>
+            <label for="font-color">文字颜色</label>
+            <input id="font-color" type="color" onchange="onColorChange(event)">
+        </div>
+        <div>
+            <label for="background-color">背景颜色</label>
+            <input id="background-color" type="color" onchange="onBackgroundColorChange(event)">
+        </div>
+        <div>
+            <button onclick="setBold()">加粗</button>
+            <button onclick="setItalic()">倾斜</button>
+            <button onclick="setUnderline()">下划线</button>
+            <button onclick="setStrikeThrough()">中划线</button>
+        </div>
+        <div>
+            <span>对齐</span>
+            <div>
+                <button onclick="alignCenter()">居中</button>
+                <button onclick="alignLeft()">居左</button>
+                <button onclick="alignRight()">居右</button>
+                <button onclick="alignJustify()">两端对齐</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="./text-editor.js"></script>
+<script>
+
+    let textEditor = new TextEditor({
+        el: document.querySelector('.my-text-wrapper')
+    })
+
+    function onFontSizeChange(e) {
+        textEditor.setFontSize(e.target.value)
+    }
+
+    function onLineHeightChange(e) {
+        textEditor.setLineHeight(e.target.value)
+    }
+
+    function onColorChange(e) {
+        textEditor.setFontColor(e.target.value)
+    }
+
+    function onBackgroundColorChange(e) {
+        textEditor.setBackgroundColor(e.target.value)
+    }
+
+    function onFontFamilyChange(e) {
+        textEditor.setFontFamily(e.target.value)
+    }
+
+    function setBold() {
+        textEditor.setBold()
+    }
+
+    function setItalic() {
+        textEditor.setItalic()
+    }
+
+    function setUnderline() {
+        textEditor.setUnderline()
+    }
+
+    function setStrikeThrough() {
+        textEditor.setStrikeThrough()
+    }
+
+    function alignCenter() {
+        textEditor.alignCenter()
+    }
+
+    function alignLeft() {
+        textEditor.alignLeft()
+    }
+
+    function alignRight() {
+        textEditor.alignRight()
+    }
+
+    function alignJustify() {
+        textEditor.alignJustify()
+    }
+
+
+</script>
+</body>
+</html>
